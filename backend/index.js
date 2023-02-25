@@ -2,7 +2,7 @@ var express = require("express")
 var websocket = require("ws")
 var wsserver = new websocket.WebSocketServer({port:8081})
 var app = express()
-var authkey = "insert-here" // auth
+var authkey = process.env.auth // auth
 var connected = []
 
 function getuserbgm(user) {
