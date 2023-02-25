@@ -1,0 +1,41 @@
+<html>
+<title>OLD FE2 maptest music player</title>
+<center>OLD FE2 maptest music player</center>
+<div style="position: relative; text-align: center; top: 15px;"><input id="username" placeholder="username here" name="username" required="" type="text"/></div>
+<div style="position: relative; text-align: center; top: 30px;"><button id="connect">Connect</button></div>
+<audio src="" id="bgm"></audio>
+<script>
+var connected = false
+var lastbgm = ""
+var button=document.getElementById("connect")
+var audio=document.getElementById("bgm")
+var user=document.getElementById("username")
+button.onclick = function() {
+if (connected == false) {
+connected = true
+button.innerHTML = "waiting for connection"
+var socket = new WebSocket("ws://localhost:8081")
+socket.addEventListener("open",function(res) {
+socket.send(JSON.stringify({"user":user.value}))
+})
+socket.addEventListener("message",function(res) {
+if (res.data == null) {
+button.innerHTML = "error"
+return
+}
+var jsondat = JSON.parse(res.data)
+if (jsondat.bgm == "waiting") {
+button.innerHTML = "waiting for BGM"
+} else {
+if (jsondat.bgm != lastbgm) {
+lastbgm = jsondat.bgm
+button.innerHTML = "playing BGM"
+audio.src = atob(jsondat.bgm)
+audio.play()
+}
+}
+})
+}
+}
+</script>
+</html>
