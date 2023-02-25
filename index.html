@@ -14,7 +14,7 @@ button.onclick = function() {
 if (connected == false) {
 connected = true
 button.innerHTML = "waiting for connection"
-var socket = new WebSocket("wss://fe2io.jjthegamer.repl.com")
+var socket = new WebSocket("wss://fe2io.jjthegamer.repl.co")
 socket.addEventListener("open",function(res) {
 socket.send(JSON.stringify({"user":user.value}))
 })
