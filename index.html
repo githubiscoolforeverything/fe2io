@@ -32,6 +32,11 @@ lastbgm = jsondat.bgm
 button.innerHTML = "playing BGM"
 audio.src = atob(jsondat.bgm)
 audio.play()
+} else {
+ if (jsondat.bgm == "disconnect") {
+  connected = false
+   button.innerHTML = "Connect"
+ }
 }
 }
 })
