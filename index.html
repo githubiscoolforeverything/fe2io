@@ -31,7 +31,7 @@ if (jsondat.bgm == "disconnect") {
   button.innerHTML = "Connect"
  return
 }
-if ((jsondat.bgm == "waiting") || (jsondat.bgm == "no")) {
+if ((jsondat.bgm == "waiting") || (jsondat.bgm == "no") || (jsondat.bgm == "none") || (jsondat.bgm == "")) { // to lazy to fix on the backend
 button.innerHTML = "waiting for BGM"
 } else {
 if (jsondat.bgm != lastbgm) {
